@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="." method="get">{% csrf_token %}
+  {% if request.user != None  %}
+    <a href="/logout">Logout</a>
+    <a href='{% url "myforum:profile" request.user.id %}'>{{ request.user.username }}</a>
+  {% else %}
+    <a href="/login">Login</a>
+  {% endif %}
+</form>
+{% if latest_topic_list %}
+  {% for topic in latest_topic_list %}
+    <p>{{ topic.author }}</p>
+    <p><a href='{% url "myforum:topic" topic.id %}'>{{ topic.title }}</a></p>
+    <p>{{ topic.pub_date }}</p>
+  {% endfor %}
+{% else %}
+  <p>No topics are available.</p>
+{% endif %}
+</body>
+</html>

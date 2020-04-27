@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    textarea {
+      display: block;
+    }
+
+    .my-form > :not(:last-child) {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+      <h1>Create new Topic</h1>
+</div>
+<p>text Before</p>
+<form class="my-form" name="create-topic" action="{% url 'myforum:create' %}" method="post">{% csrf_token %}
+  <textarea name="topic-title" placeholder="The title of your topic." rows="1" cols="80"></textarea>
+  <textarea name="topic-text" placeholder="Type your topic text here." rows="5" cols="80"></textarea>
+  <input type="submit" value="Submit">
+</form>
+<p>Text after</p>
+</body>
+</html>

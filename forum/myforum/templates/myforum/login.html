@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="header">
+    <h1>Please, login</h1>
+      <form action="." method="post">{% csrf_token %}
+          <input name="login" placeholder="Type your login here" rows="1" cols="30"><br><br>
+          <input type="password" name="password" placeholder="Type your password here" rows="1" cols="30">
+          <p><input type="submit" value="Login"></p>
+      </form>
+</body>
+</html>

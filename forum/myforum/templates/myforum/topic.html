@@ -1,0 +1,21 @@
+<h1>{{ topic.title }}</h1>
+<p>{{ topic.pub_date }}</p>
+<p>{{ topic.last_activity_date }}</p>
+<br>
+<p>{{ topic.text }}</p>
+<p>{{ topic.author }}</p>
+<br>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% for comment in topic.comment_set.all %}
+    <br>
+    <p>{{ comment.author }}</p>
+    <p>{{ comment.text }}</p>
+    <p>{{ comment.pub_date }}</p>
+{% endfor %}
+
+<form name="leave-comment" action="{% url 'myforum:topic' topic.id %}" method="post">{% csrf_token %}
+  <textarea name="leave-comment" placeholder="Type your comment here." rows="5" cols="80"></textarea>
+  <p><input type="submit" value="Submit"></p>
+</form>
