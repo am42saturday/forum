@@ -71,14 +71,13 @@ class TopicView(TemplateView):
 class ProfileView(TemplateView):
     template_name = 'myforum/profile.html'
 
-    # if is_authenticated
     def get_context_data(self, **kwargs):
-        # user = user.id
         context = super().get_context_data(**kwargs)
         user = context['user_id']
+        print(context)
+        print(user)
         context['user'] = User.objects.get(id=user)
         return context
-    # else: перенаправить на логин
 
 
 class TopicCreate(TemplateView):
