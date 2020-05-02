@@ -2,7 +2,7 @@
 <html>
 <body>
 <form action="." method="get">{% csrf_token %}
-  {% if request.user != None  %}
+  {% if request.user.is_authenticated  %}
     <a href="/logout">Logout</a>
     <a href='{% url "myforum:profile" request.user.id %}'>{{ request.user.username }}</a>
   {% else %}
