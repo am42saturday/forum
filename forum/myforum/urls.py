@@ -11,6 +11,7 @@ urlpatterns = [
     path('<int:topic_id>/', views.TopicView.as_view(), name='topic'),
     path('profile/<int:user_id>/', views.ProfileView.as_view(), name='profile'),
     path('new/', views.TopicCreate.as_view(), name='create'),
+    path('register/', views.RegisterView.as_view(), name='register'),
 ]
 
 # if settings.DEBUG:

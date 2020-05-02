@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    textarea {
+      display: block;
+    }
+
+    .my-form > :not(:last-child) {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+      <h1>Registration</h1>
+</div>
+<form class="my-form" name="register-user" action="{% url 'myforum:register' %}" method="post">
+  {% csrf_token %}
+  <textarea name="first-name" placeholder="Type your first name." rows="1" cols="40"></textarea>
+  <textarea name="last-name" placeholder="Type your last name" rows="1" cols="40"></textarea>
+  <textarea name="username" placeholder="Login/username (required)" rows="1" cols="40"></textarea>
+  <input type="password" name="password" placeholder="password" rows="1" cols="40">required<br>
+  <input type="email" name="email" placeholder="Type your email" rows="1" cols="40">required<br>
+  <input type="image" name="avatar"> Load your profile image here<br>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>

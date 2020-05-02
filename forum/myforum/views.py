@@ -11,6 +11,23 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User, Topic, Comment
 
 
+class RegisterView(TemplateView):
+    template_name = 'myforum/register.html'
+
+    def post(self, request, **kwargs):
+        first_name = request.POST.get("first-name")
+        last_name = request.POST.get("last-name")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+        # avatar = request.POST.get("avatar")
+        user = User(first_name=first_name, last_name=last_name, username=username,
+            password=password, email=email, date_joined=timezone.now(),
+            last_login = timezone.now())
+        user.save()
+        return self.get(request, **kwargs)
+
+
 class LoginView(TemplateView):
     template_name = 'myforum/login.html'
 
@@ -67,6 +84,7 @@ class TopicView(TemplateView):
             return self.get(request, **kwargs)
         else:
             return render(request, 'myforum/login.html')
+
 
 class ProfileView(TemplateView):
     template_name = 'myforum/profile.html'
