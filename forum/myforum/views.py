@@ -10,7 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User, Topic, Comment
 
-
+# Нельзя зарегистрироваться, если залогинен.
+# После регистрации - автологин
+# Показывать ошибку, если пользователь не найден или парол не соответствует
 class RegisterView(TemplateView):
     template_name = 'myforum/register.html'
 
@@ -25,7 +27,7 @@ class RegisterView(TemplateView):
             password=password, email=email, date_joined=timezone.now(),
             last_login = timezone.now())
         user.save()
-        return self.get(request, **kwargs)
+        return render(request, 'myforum/login.html')
 
 
 class LoginView(TemplateView):
